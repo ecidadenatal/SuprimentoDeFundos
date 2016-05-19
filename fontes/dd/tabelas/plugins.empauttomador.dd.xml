@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes" ?>
+<table name="plugins.empauttomador" description="" prefix="" label="Vínculo da Autorização de Empenho com o Tomador de Suprimento." type="0">
+  <fields>
+    <field name="sequencial"
+           conteudo="int4"
+           description="Sequencial"
+           inivalue="0"
+           label="Sequencial"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Sequencial"
+           reference=""
+           ispk="t"
+           hassequence="t">
+      <sequence name="plugins.empauttomador_sequencial_seq" ></sequence>
+    </field>
+    <field name="autorizacaoempenho"
+           conteudo="int4"
+           description="Autorização de Empenho"
+           inivalue="0"
+           label="Autorização de Empenho"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Autorização de Empenho"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="tomadorsuprimento"
+           conteudo="int4"
+           description="Tomador de Suprimento"
+           inivalue="0"
+           label="Tomador de Suprimento"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Tomador de Suprimento"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+  </fields>
+  <primarykey>
+    <fieldpk  name="sequencial"></fieldpk>
+  </primarykey>
+</table>

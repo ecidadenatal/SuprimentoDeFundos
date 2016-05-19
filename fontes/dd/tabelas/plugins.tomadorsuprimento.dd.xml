@@ -1,0 +1,88 @@
+<?xml version="1.0" standalone="yes" ?>
+<table name="plugins.tomadorsuprimento" description="" prefix="" label="Tomador de Suprimentos" type="0">
+  <fields>
+    <field name="sequencial"
+           conteudo="int4"
+           description="Sequencial"
+           inivalue="0"
+           label="Sequencial"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Sequencial"
+           reference=""
+           ispk="t"
+           hassequence="t">
+      <sequence name="plugins.tomadorsuprimento_sequencial_seq" ></sequence>
+    </field>
+    <field name="orgao"
+           conteudo="int4"
+           description="Código do Órgão"
+           inivalue="0"
+           label="Cód. Órgão"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Cód. Órgão"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="unidade"
+           conteudo="int4"
+           description="Código da Unidade"
+           inivalue="0"
+           label="Cód. Unidade"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Cód. Unidade"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="numcgm"
+           conteudo="int4"
+           description="Número do CGM"
+           inivalue="0"
+           label="CGM"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="CGM"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="ativo"
+           conteudo="boolean"
+           description="Indicador se o tomador está ou não ativo"
+           inivalue="0"
+           label="Ativo"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Ativo"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+  </fields>
+  <primarykey>
+    <fieldpk  name="sequencial"></fieldpk>
+  </primarykey>
+</table>
