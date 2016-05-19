@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <plugin name="SuprimentoDeFundos" label="Suprimento de Fundos" plugin-version="1.0" ecidade-version="2.3.47" id-modulo="">
+  <plugin name="SuprimentoDeFundos" label="Suprimento de Fundos" plugin-version="1.0" ecidade-version="2.3.47" id-modulo="398">
     <id id="SuprimentoDeFundos"> </id>
     <files>
 

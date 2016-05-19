@@ -16,7 +16,6 @@
       <file name="SuprimentoDeFundos.xml"    path="/modification/xml/SuprimentoDeFundos.xml" />
 
     </files>
-    <estrutura install="/instalacao.sql" uninstall="/desinstalacao.sql" >
-    </estrutura>
+    <estrutura install="/instalacao.sql" uninstall="/desinstalacao.sql" ></estrutura>
   </plugin>
 </manifest>
