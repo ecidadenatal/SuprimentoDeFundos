@@ -66,13 +66,21 @@
     $oDaoEmpAutTomador   = db_utils::getDao("empauttomador");
     $sWhereEmpAutTomador = " autorizacaoempenho = {$e54_autori}";
     $sSqlEmpAutTomador   = $oDaoEmpAutTomador->sql_query_file(null,
-                                                                "sequencial",
+                                                                "sequencial, tomadorsuprimento",
                                                                 null,
                                                                 $sWhereEmpAutTomador);
     $rsEmpAutTomador     = $oDaoEmpAutTomador->sql_record($sSqlEmpAutTomador);
     if ($oDaoEmpAutTomador->numrows > 0) {
       $sequencial = db_utils::fieldsMemory($rsEmpAutTomador, 0)->sequencial;
+      $tomadorsuprimentoatual = db_utils::fieldsMemory($rsEmpAutTomador, 0)->tomadorsuprimento;
     }
+
+    $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
+    if ($tomadorsuprimento != $tomadorsuprimentoatual && $oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
+      $sqlerro  = true;
+      $erro_msg = "O tomador já possui dois empenhos pendentes de prestação de contas.";
+    }
+
     if (!empty($tomadorsuprimento)) {
     
       $oDaoAlteraEmpAutTomador  = db_utils::getDao("empauttomador");
@@ -122,16 +130,24 @@
   
   if (!$sqlerro && $e44_tipo == 4 && isset($tomadorsuprimento)) {
     
-    $oDaoEmpAutTomador = db_utils::getDao("empauttomador");
-    $oDaoEmpAutTomador->sequencial = null;
-    $oDaoEmpAutTomador->autorizacaoempenho = $e54_autori;
-    $oDaoEmpAutTomador->tomadorsuprimento  = $tomadorsuprimento;
-    $oDaoEmpAutTomador->incluir(null);
-    
-    if ($oDaoEmpAutTomador->erro_status == 0) {
+    $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
+    if ($oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
         $sqlerro  = true;
-        $erro_msg = $oDaoEmpAutTomador->erro_msg;
+        $erro_msg = "O tomador já possui dois empenhos pendentes de prestação de contas.";
     }
+
+    if (!$sqlerro) {
+      $oDaoEmpAutTomador = db_utils::getDao("empauttomador");
+      $oDaoEmpAutTomador->sequencial = null;
+      $oDaoEmpAutTomador->autorizacaoempenho = $e54_autori;
+      $oDaoEmpAutTomador->tomadorsuprimento  = $tomadorsuprimento;
+      $oDaoEmpAutTomador->incluir(null);
+      if ($oDaoEmpAutTomador->erro_status == 0) {
+          $sqlerro  = true;
+          $erro_msg = $oDaoEmpAutTomador->erro_msg;
+      }
+    }
+    
   }
 
   $3]]>

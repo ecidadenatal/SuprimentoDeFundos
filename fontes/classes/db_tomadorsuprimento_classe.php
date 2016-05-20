@@ -47,7 +47,23 @@ class cl_tomadorsuprimento extends DAOBasica {
     if (!empty($sWhere)) {
       $sSql .= " and {$sWhere} ";
     }
-    $sSql .= "order by tomadorsuprimento.sequencial";
+    $sSql .= " order by tomadorsuprimento.sequencial";
     return $sSql;
+  }
+
+  public function sql_empenhos_pendentes($iTomador) {
+
+    $sSql  = " select count(*) as pendente";
+    $sSql .= "  from plugins.tomadorsuprimento ts";
+    $sSql .= "      inner join plugins.empauttomador et on et.tomadorsuprimento = ts.sequencial";
+    $sSql .= "      inner join empautoriza              on e54_autori           = et.autorizacaoempenho";
+    $sSql .= "      inner join empempaut                on e61_autori           = e54_autori";
+    $sSql .= "      inner join empempenho               on e60_numemp           = e61_numemp";
+    $sSql .= "  where ts.sequencial = {$iTomador} and e60_numemp in (select e45_numemp from emppresta where e45_conferido is null)";
+
+    $rsEmpenhosPendentes = db_query($sSql);
+    $iEmpenhosPendentes  = db_utils::fieldsMemory($rsEmpenhosPendentes, 0)->pendente;
+
+    return $iEmpenhosPendentes;
   }
 }
