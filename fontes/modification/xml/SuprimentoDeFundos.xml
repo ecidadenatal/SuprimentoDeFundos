@@ -54,6 +54,78 @@
 
   </file>
 
+  <file path='forms/db_frmempautoriza.php'>
+
+    <operation>
+      <search regex="true"><![CDATA[(db_select\(\s*\"e44_tipo"\s*,\s*\$arr\s*,\s*true\s*,\s*1\s*\);)]]></search>
+      <add>
+        <![CDATA[        db_select("e44_tipo", $arr, true, 1, "onload='js_verificaEvento();' onchange='js_verificaEvento();'");
+      ?>
+    </td>
+  </tr>
+  <tr id="tomador" style="display: none">
+    <td><strong>Tomador de Suprimento:</strong></td>
+    <td>
+      <?
+        $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
+        $result = $oDaoTomadorSuprimento->sql_record($oDaoTomadorSuprimento->sql_tomador_depto("sequencial, z01_numcgm || '-' || z01_nome", db_getsession('DB_coddepto')));
+        db_selectrecord("tomadorsuprimento", $result, true, 1);
+      ?>
+    </td>
+  </tr>]]>
+      </add>
+    </operation>    
+
+    <operation>
+      <search regex="true"><![CDATA[(<script>)(\s*\n*.*)(var\s*.*?>;)]]></search>
+      <add>
+        <![CDATA[$1
+
+window.onload = function () {
+  js_verificaEvento();
+  document.form1.e54_concarpeculiar.value = "000";
+}
+
+$3]]>
+      </add>
+
+    <operation>
+      <search regex="true"><![CDATA[(db_input\s*\(\s*\"e54_concarpeculiar\"\s*)]]></search>
+      <add>
+        <![CDATA[
+        if (!isset($e54_concarpeculiar)) { 
+          $e54_concarpeculiar = "000"; 
+        } 
+        $1]]>
+      </add>
+      
+    </operation> 
+
+    <operation>
+      <search regex="true"><![CDATA[(\$\(\'e44_tipo\'\))]]></search>
+      <add>
+        <![CDATA[                                      $('e44_tipo')          ,
+                                      $('tomadorsuprimento')]]>
+      </add>
+    </operation> 
+
+    <operation>
+      <search regex="true"><![CDATA[(oDBFormCache.save\(.*\);\s*\n*})]]></search>
+      <add>
+        <![CDATA[$1
+function js_verificaEvento() {
+  if (document.form1.e44_tipo.value == 4) {
+    document.getElementById('tomador').style.display = 'table-row';
+    return;
+  }
+  document.getElementById('tomador').style.display = 'none';
+}
+]]>
+      </add>
+    </operation> 
+
+  </file>
+
   <file path='emp1_empautoriza005.php'>
 
     <operation>
