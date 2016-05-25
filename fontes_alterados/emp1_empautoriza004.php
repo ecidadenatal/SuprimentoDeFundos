@@ -244,6 +244,12 @@ if (isset($incluir)) {
 
   if (!$sqlerro && $e44_tipo == 4 && isset($tomadorsuprimento)) {
     
+    $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
+    if ($oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
+      $sqlerro  = true;
+      $erro_msg = "O tomador já possui dois empenhos pendentes de prestação de contas.";
+    }
+
     $oDaoEmpAutTomador = db_utils::getDao("empauttomador");
     $oDaoEmpAutTomador->sequencial = null;
     $oDaoEmpAutTomador->autorizacaoempenho = $e54_autori;

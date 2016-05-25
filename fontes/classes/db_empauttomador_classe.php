@@ -31,4 +31,24 @@ class cl_empauttomador extends DAOBasica {
     parent::__construct("plugins.empauttomador");
   }
   
+  public function sql_query_dados_tomador($iEmpAutoriza = null, $iEmpEmpenho = null, $sCampos = "*", $sOrdem = null, $sWhere = "") {
+    
+  	 $sSql = "select {$sCampos} 
+  	            from plugins.empauttomador
+  	                 inner join empempaut                 on empempaut.e61_autori         = empauttomador.autorizacaoempenho
+  	                 inner join plugins.tomadorsuprimento on tomadorsuprimento.sequencial = empauttomador.tomadorsuprimento
+  	                 inner join cgm                       on cgm.z01_numcgm               = tomadorsuprimento.numcgm ";
+  	 $sWhereSql = " where ";
+  	 if (!empty($iEmpAutoriza)) {
+  	   $sWhereSql .= " e61_autori = {$iEmpAutoriza} ";  
+  	 } else if (!empty($iEmpEmpenho)) {
+  	 	$sWhereSql .= " e61_numemp = {$iEmpEmpenho} ";
+  	 }
+  	 
+  	 $sSql .= $sWhereSql.($sWhere!=""?" and $sWhere":"");
+  	 
+  	 return $sSql; 
+  	 
+  }
+  
 }

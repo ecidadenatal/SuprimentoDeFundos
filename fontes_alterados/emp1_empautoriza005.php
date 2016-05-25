@@ -241,7 +241,15 @@ if(isset($alterar) && !$sqlerro ){
     $rsEmpAutTomador     = $oDaoEmpAutTomador->sql_record($sSqlEmpAutTomador);
     if ($oDaoEmpAutTomador->numrows > 0) {
       $sequencial = db_utils::fieldsMemory($rsEmpAutTomador, 0)->sequencial;
+      $tomadorsuprimentoatual = db_utils::fieldsMemory($rsEmpAutTomador, 0)->tomadorsuprimento;
     }
+
+    $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
+    if ($tomadorsuprimento != $tomadorsuprimentoatual && $oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
+      $sqlerro  = true;
+      $erro_msg = "O tomador já possui dois empenhos pendentes de prestação de contas.";
+    }
+
     if (!empty($tomadorsuprimento)) {
     
       $oDaoAlteraEmpAutTomador  = db_utils::getDao("empauttomador");

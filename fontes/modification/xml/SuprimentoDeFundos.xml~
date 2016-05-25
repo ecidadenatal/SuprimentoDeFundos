@@ -2,7 +2,7 @@
 <modification>
   <name>SuprimentoDeFundos</name>
   <id>SuprimentoDeFundos</id>
-  <ecidade-version>2.3.47</ecidade-version>
+  <ecidade-version>2.3.39</ecidade-version>
   
   <file path='classes/empenho.php'>
 
@@ -70,7 +70,9 @@
         $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
         $result = $oDaoTomadorSuprimento->sql_record($oDaoTomadorSuprimento->sql_tomador_depto("sequencial, z01_numcgm || '-' || z01_nome", db_getsession('DB_coddepto')));
         db_selectrecord("tomadorsuprimento", $result, true, 1);
-      ]]>
+      ?>
+    </td>
+  </tr>]]>
       </add>
     </operation>    
 
@@ -149,7 +151,7 @@ function js_verificaEvento() {
     $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
     if ($tomadorsuprimento != $tomadorsuprimentoatual && $oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
       $sqlerro  = true;
-      $erro_msg = "O tomador j· possui dois empenhos pendentes de prestaÁ„o de contas.";
+      $erro_msg = "O tomador j√° possui dois empenhos pendentes de presta√ß√£o de contas.";
     }
 
     if (!empty($tomadorsuprimento)) {
@@ -204,7 +206,7 @@ function js_verificaEvento() {
     $oDaoTomadorSuprimento = db_utils::getDao("tomadorsuprimento");
     if ($oDaoTomadorSuprimento->sql_empenhos_pendentes($tomadorsuprimento) >= 2) {
         $sqlerro  = true;
-        $erro_msg = "O tomador j· possui dois empenhos pendentes de prestaÁ„o de contas.";
+        $erro_msg = "O tomador j√° possui dois empenhos pendentes de presta√ß√£o de contas.";
     }
 
     if (!$sqlerro) {
