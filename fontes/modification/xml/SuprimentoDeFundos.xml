@@ -253,7 +253,8 @@ function js_verificaEvento() {
   
   <file path='fpdf151/impmodelos/mod_imprime6.php'>
     <operation>
-      <search regex="true" flag="U"><![CDATA[((if\s*\(\$this->dadosbancoemprenho\s*==\s*'t'\)\s*{)((.*\n?)*)\$this->objpdf->text\(.*,\s*'Fax'\));]]></search>
+      <!--<search regex="true" flag="U"><![CDATA[((if\s*\(\$this->dadosbancoemprenho\s*==\s*'t'\)\s*{)((.*\n?)*)\$this->objpdf->text\(.*,\s*'Fax'\));]]></search>-->
+      <search regex="true" ><![CDATA[(if\s*.*dadosbancoemprenho.*\{\n*\s*.*Conta'\);\n*\s*.*\}\n*\s*.*'Telefone'\);\s*\n*.*'Fax'\);)]]></search>
       <add>
         <![CDATA[
   if ($this->codtipo == 4 && isset($this->oDadosTomador)) {
@@ -268,7 +269,8 @@ function js_verificaEvento() {
     </operation>
     
     <operation>
-      <search regex="true" flag="U"><![CDATA[((if\s*\(\$this->dadosbancoemprenho\s*==\s*'t'\)\s*{\n*.*\$this->iBancoFornecedor\s*.\s*'\s*\/\s*'\s*.\$this->iAgenciaForncedor\s*.\s*'\s*\/\s*'\s*.\s*\$this->iContaForncedor\s*\)\s*;\n*\s*})(((.*\n?)*\$this->objpdf->text\(.*'\d*:\s*'\s*.\s*\$this->fax\s*\)\s*;)))]]></search>
+      <!--<search regex="true" flag="U"><![CDATA[((if\s*\(\$this->dadosbancoemprenho\s*==\s*'t'\)\s*{\n*.*\$this->iBancoFornecedor\s*.\s*'\s*\/\s*'\s*.\$this->iAgenciaForncedor\s*.\s*'\s*\/\s*'\s*.\s*\$this->iContaForncedor\s*\)\s*;\n*\s*})(((.*\n?)*\$this->objpdf->text\(.*'\d*:\s*'\s*.\s*\$this->fax\s*\)\s*;)))]]></search>-->
+      <search regex="true" ><![CDATA[(if\s*.*dadosbancoemprenho.*\{\n*\s*.*iContaForncedor\);\n*\s*.*\}\n*\s*.*telefone\);\s*\n*.*fax\);)]]></search>
       <add>
         <![CDATA[
   if ($this->codtipo == 4 && isset($this->oDadosTomador)) {

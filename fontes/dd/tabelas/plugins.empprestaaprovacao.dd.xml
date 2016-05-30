@@ -1,0 +1,56 @@
+<?xml version="1.0" standalone="yes" ?>
+<table name="plugins.emppresta" description="" prefix="" label="Aprovação da Prestação de Contas" type="0">
+  <fields>
+    <field name="sequencial"
+           conteudo="int4"
+           description="Sequencial"
+           inivalue="0"
+           label="Sequencial"
+           size="10"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Sequencial"
+           reference=""
+           ispk="t"
+           hassequence="t">
+      <sequence name="plugins.emppresta_sequencial_seq" ></sequence>
+    </field>
+    <field name="emppresta"
+           conteudo="int4"
+           description="Código da prestação"
+           inivalue="0"
+           label="Cód. Prestação"
+           size="4"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Cód. Prestação"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+    <field name="aprovado"
+           conteudo="boolean"
+           description="Indicador de aprovação da prestação"
+           inivalue="0"
+           label="Aprovado"
+           null="f"
+           uppercase="f"
+           autocompl="f"
+           aceitatipo="1"
+           tipoobj="text"
+           labelrel="Aprovado"
+           reference=""
+           ispk="f"
+           hassequence="f">
+    </field>
+  </fields>
+  <primarykey>
+    <fieldpk  name="sequencial"></fieldpk>
+  </primarykey>
+</table>
