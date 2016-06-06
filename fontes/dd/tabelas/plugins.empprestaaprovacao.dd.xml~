@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="yes" ?>
-<table name="plugins.empprestaaprovacao" description="" prefix="" label="Aprovação da Prestação de Contas" type="0">
+<table name="plugins.emppresta" description="" prefix="" label="Aprovação da Prestação de Contas" type="0">
   <fields>
     <field name="sequencial"
            conteudo="int4"
@@ -34,7 +34,7 @@
            ispk="f"
            hassequence="f">
     </field>
-    <field name="observacao"
+        <field name="observacao"
            conteudo="text"
            description="Texto atual da prestação de contas"
            inivalue=""
@@ -46,22 +46,6 @@
            aceitatipo="0"
            tipoobj="text"
            labelrel="Observação"
-           reference=""
-           ispk="f"
-           hassequence="f">
-    </field>
-    <field name="observacao_conferencia"
-           conteudo="text"
-           description="Observação da conferência"
-           inivalue=""
-           label="Observação da conferência"
-           size="1"
-           null="t"
-           uppercase="f"
-           autocompl="f"
-           aceitatipo="0"
-           tipoobj="text"
-           labelrel="Observação da conferência"
            reference=""
            ispk="f"
            hassequence="f">

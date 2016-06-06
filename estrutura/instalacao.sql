@@ -27,6 +27,8 @@ CACHE 1;
 CREATE TABLE plugins.empprestaaprovacao (
 	sequencial integer,
 	emppresta integer,
+	observacao text,
+	observacao_conferencia text,
 	aprovado boolean
 );
 
