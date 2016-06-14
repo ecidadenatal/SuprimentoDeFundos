@@ -132,7 +132,7 @@ function js_verificaEvento() {
       <add>
         <![CDATA[$1
 
-  if (!$sqlerro) {
+  if (!$sqlerro && $e44_tipo == 4 && !empty($tomadorsuprimento)) {
     
     $oDaoEmpAutTomador   = db_utils::getDao("empauttomador");
     $sWhereEmpAutTomador = " autorizacaoempenho = {$e54_autori}";
