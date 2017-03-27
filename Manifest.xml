@@ -4,19 +4,18 @@
     <id id="SuprimentoDeFundos"> </id>
     <files>
 
-      <!-- classe -->
-      <file name="db_empauttomador_classe.php"    path="/classes/db_empauttomador_classe.php" />
-      <file name="db_tomadorsuprimento_classe.php"    path="/classes/db_tomadorsuprimento_classe.php" />
-      <file name="db_empprestaaprovacao_classe.php"   path="/classes/db_empprestaaprovacao_classe.php" />
+     <!-- classe -->
+     <file name="db_tomadorsuprimento_classe.php"    path="/classes/db_tomadorsuprimento_classe.php" />
+     <file name="db_empprestaaprovacao_classe.php"    path="/classes/db_empprestaaprovacao_classe.php" />
+     <file name="db_empauttomador_classe.php"    path="/classes/db_empauttomador_classe.php" /> 
 
-      <!-- dd -->
-      <file name="plugins.empauttomador.dd.xml"    path="/dd/tabelas/plugins.empauttomador.dd.xml" />
-      <file name="plugins.tomadorsuprimento.dd.xml"    path="/dd/tabelas/plugins.tomadorsuprimento.dd.xml" />
-      <file name="plugins.empprestaaprovacao.dd.xml"   path="/dd/tabelas/plugins.empprestaaprovacao.dd.xml" />
-
-      <!-- outro -->
-      <file name="SuprimentoDeFundos.xml"    path="/modification/xml/SuprimentoDeFundos.xml" />
-
+     <!-- outro -->
+     <file name="SuprimentoDeFundos.xml"    path="/modification/xml/SuprimentoDeFundos.xml" />
+     <file name="plugins.tomadorsuprimento.dd.xml"    path="/dd/tabelas/plugins.tomadorsuprimento.dd.xml" />
+     <file name="plugins.empprestaaprovacao.dd.xml"    path="/dd/tabelas/plugins.empprestaaprovacao.dd.xml" />
+     <file name="plugins.empauttomador.dd.xml"    path="/dd/tabelas/plugins.empauttomador.dd.xml" />
+     <file name="db_frmemppresta09.php"    path="/forms/db_frmemppresta09.php" />
+       
     </files>
     <estrutura install="/instalacao.sql" uninstall="/desinstalacao.sql" ></estrutura>
   </plugin>

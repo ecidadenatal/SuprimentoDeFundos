@@ -42,6 +42,7 @@
       <search regex="true"><![CDATA[(\$\('e49_numcgm'\)\s*.value\s*=\s*'';)]]></search>
       <add>
         <![CDATA[
+        
     if (obj.credor != 0) {
       $('e49_numcgm').value    = obj.credor;
       $('e49_numcgm').readOnly = true;
@@ -266,7 +267,7 @@ function js_verificaEvento() {
         ]]>
       </add>
     </operation>
-    
+
     <operation>
       <search regex="true" ><![CDATA[(if\s*.*dadosbancoemprenho.*\{\n*\s*.*iContaForncedor\);\n*\s*.*\}\n*\s*.*telefone\);\s*\n*.*fax\);)]]></search>
       <add>
@@ -282,106 +283,5 @@ function js_verificaEvento() {
       </add>
     </operation>
   </file>
-
-  <file path='func_empprestamovimento.php'>
-
-    <operation>
-      <search regex="true"><![CDATA[(\$sWhereComplementar.*e45_acerta is null.*\n*})]]></search>
-      <add>
-        <![CDATA[$1
-$sWhereComplementar .= " or ((select aprovado from plugins.empprestaaprovacao where emppresta = e45_sequencial order by sequencial desc limit 1) is false)";]]>
-      </add>
-    </operation>
-
-  </file>
-
-  <file path='emp1_emppresta009.php'>
-
-    <operation>
-      <search regex="true"><![CDATA[(\$oPrestacaoConta->processar.*;)]]></search>
-      <add>
-        <![CDATA[$1
-
-      if (isset($aprovacao)) {
-        
-        $oDaoEmpPrestaAprovacao = db_utils::getDao("empprestaaprovacao");
-        $oDaoEmpPrestaAprovacao->sequencial = null;
-        $oDaoEmpPrestaAprovacao->emppresta  = $e45_sequencial;
-        $oDaoEmpPrestaAprovacao->observacao = $e45_obs;
-        $oDaoEmpPrestaAprovacao->observacao_conferencia = $observacao_lancamento;
-        $oDaoEmpPrestaAprovacao->aprovado   = $aprovacao == 1 ? 'true' : 'false';
-        $oDaoEmpPrestaAprovacao->incluir(null);
-        if ($aprovacao == 2) {
-          $clemppresta->e45_acerta = null;
-          $clemppresta->alterar($e45_sequencial);
-        }
-        if ($oDaoEmpPrestaAprovacao->erro_status == 0 ) {
-          $erro_msg = "Erro ao gravar a aprovação da prestação de contas.";
-          $sqlerro  = true;
-        }
-
-      }
-      ]]>
-      </add>
-    </operation>
-
-    <operation>
-      <search regex="true"><![CDATA[include.*db_frmemppresta09.php.*;]]></search>
-      <add>
-        <![CDATA[include(modification("forms/db_frmemppresta09.php"));]]>
-      </add>
-    </operation>
-
-  </file>
-
-  <file path='forms/db_frmemppresta09.php'>
-
-    <operation>
-      <search regex="true"><![CDATA[\<tr\>\n*.*\<td.*\$Te45_conferido.*\>]]></search>
-      <add>
-        <![CDATA[<tr id='data_conf'>
-    <td nowrap title="<?=@$Te45_conferido?>">]]>
-      </add>
-    </operation>
-
-    <operation>
-      <search regex="true"><![CDATA[(\<tr\>\n*.*\<td.*\$Te45_obs.*\>)]]></search>
-      <add>
-        <![CDATA[  <tr>
-    <td><strong>Aprovado:</strong></td>
-    <td>
-      <?
-        $aAprovacao = array('1' => 'Sim', '2' => 'Não');
-        db_select('aprovacao', $aAprovacao, true, 1, "onchange='js_validaAprovacao(this.value)'");
-      ?>
-    </td>
-  </tr>
-  $1]]>
-      </add>
-    </operation>
-
-    <operation>
-      <search regex="true"><![CDATA[if\s*\(\s*\$F.*e45_conferido.*{]]></search>
-      <add>
-        <![CDATA[if ( $F('e45_conferido') == '' && $F('aprovacao') == 1) {]]>
-      </add>
-    </operation>
-
-    <operation>
-      <search regex="true"><![CDATA[(function\s*js_pesquisae45_tipo.*{)]]></search>
-      <add>
-        <![CDATA[function js_validaAprovacao(value) {
-
-  if (value == 1) {
-    document.getElementById('data_conf').style.display = 'table-row';
-    return;
-  }
-  document.getElementById('data_conf').style.display = 'none';
-}
-$1]]>
-      </add>
-    </operation>
-
-  </file>
-
+    
 </modification>
